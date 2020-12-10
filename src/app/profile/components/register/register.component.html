@@ -1,41 +1,41 @@
-<div class="container">    
+<!-- <div class="container">    
     <form class="text-center border border-light p-5"  [formGroup]="registerForm" (ngSubmit)="userRegister()">
-        <!-- User name -->
+
         <input type="text"  [formControl]="name" class="form-control mb-4" placeholder="User Name">        
         <span style="color: red;" *ngIf="registerForm.get('name').errors && (registerForm.get('name').touched || registerForm.get('name').dirty)">
             <span *ngIf="registerForm.get('name').errors.required">Name is required</span> 
             <span *ngIf="registerForm.get('name').errors.minlength || registerForm.get('name').errors.maxlength">User name must be greater than 3 characters and less than 55 characters</span>
             <span *ngIf="registerForm.get('name').errors.pattern">Invalid character</span>
         </span>            
-        <!-- User surname -->
+
         <input type="text"  [formControl]="surname" class="form-control mb-4" placeholder="User surname">        
         <span style="color: red;" *ngIf="registerForm.get('surname').errors && (registerForm.get('surname').touched || registerForm.get('surname').dirty)">                
             <span *ngIf="registerForm.get('surname').errors.minlength || registerForm.get('surname').errors.maxlength">User surname must be greater than 3 characters and less than 55 characters</span>
             <span *ngIf="registerForm.get('surname').errors.pattern">Invalid character</span>
         </span>            
-        <!-- User type -->
+
         <select [formControl]="type" class="form-control mb-4" placeholder="User type">
             <option [ngValue]="null">Select user type...</option>                
             <option *ngFor="let type of eUserTypes | keyvalue" [ngValue]="type.value">{{type.value}}</option>              
         </select>
-        <!-- E-mail -->
+
         <input type="email"  [formControl]="email" class="form-control mb-4" placeholder="E-mail">        
         <span style="color: red;" *ngIf="registerForm.get('email').errors && (registerForm.get('email').touched || registerForm.get('email').dirty)">
             <span *ngIf="registerForm.get('email').errors.required">Email is required</span> 
             <span *ngIf="registerForm.get('email').errors.email">Email doesn't have a correct format</span>   
         </span>            
-        <!-- pwd -->
+
         <input type="password"  [formControl]="password" class="form-control mb-4" placeholder="Password">
         <span style="color: red;" *ngIf="registerForm.get('password').errors && (registerForm.get('password').touched || registerForm.get('password').dirty)">
             <span *ngIf="registerForm.get('password').errors.required">User pwd is required</span>    
             <span *ngIf="registerForm.get('password').errors.minlength">User password must be greater than 8 characters</span>
         </span>        
-        <!-- Repeat pwd -->
+
         <input type="password"  [formControl]="password2" class="form-control mb-4" placeholder="Repeat password">
         <span style="color: red;" *ngIf="registerForm.get('password2').errors && (registerForm.get('password2').touched || registerForm.get('password2').dirty)">
             <span *ngIf="registerForm.get('password2').errors.required">Repeat pwd control is required</span>                
         </span>
-        <!-- Check pwds -->
+
         <span style="color: red;" *ngIf="registerForm.errors">
             <span *ngIf="registerForm.errors.equalValue">Password controls must be equal</span>
         </span>    
@@ -44,7 +44,157 @@
                 That email is already assigned to another user.
             </h3>
         </div>
-        <!-- JOIN NOW BUTTON -->
+
         <button class="btn btn-primary my-4 float-left"  type="submit" [disabled]="!registerForm.valid">JOIN NOW</button>
     </form>
+</div> -->
+
+<div class="container-uoc">
+  <h1>REGISTER</h1>
+  <form [formGroup]="registerForm" (ngSubmit)="userRegister()">
+    <section>
+      <mat-form-field appearance="fill">
+        <mat-label>User Name</mat-label>
+        <input
+          matInput
+          type="text"
+          [formControl]="name"
+          required
+          placeholder="User Name"
+        />
+
+        <mat-error *ngIf="name.hasError('required')"
+          >Name is <strong>required</strong>
+        </mat-error>
+        <mat-error
+          *ngIf="name.hasError('minlength') || name.hasError('maxlength')"
+          >User name must be greater than 3 characters and less than 55
+        </mat-error>
+        <mat-error *ngIf="name.hasError('pattern')"
+          >Invalid character</mat-error
+        >
+      </mat-form-field>
+    </section>
+
+    <section>
+      <mat-form-field appearance="fill">
+        <mat-label>User surname</mat-label>
+        <input
+          matInput
+          type="text"
+          [formControl]="surname"
+          required
+          placeholder="User surname"
+        />
+        <mat-error
+          *ngIf="surname.hasError('minlength') || surname.hasError('maxlength')"
+          >User surname must be greater than 3 characters and less than 55
+        </mat-error>
+        <mat-error *ngIf="surname.hasError('pattern')"
+          >Invalid character</mat-error
+        >
+      </mat-form-field>
+    </section>
+
+    <section>
+      <mat-form-field appearance="fill">
+        <mat-label>Select user type...</mat-label>
+        <mat-select [formControl]="type">
+          <mat-option
+            *ngFor="let type of eUserTypes | keyvalue"
+            [value]="type.value"
+            >{{ type.value }}</mat-option
+          >
+        </mat-select>
+      </mat-form-field>
+    </section>
+
+    <section>
+      <mat-form-field appearance="fill">
+        <mat-label>Enter your email</mat-label>
+        <input
+          matInput
+          type="email"
+          [formControl]="email"
+          required
+          placeholder="Ex. pat@example.com"
+        />
+        <mat-error
+          *ngIf="email.hasError('email') && !email.hasError('required')"
+          >Please enter a valid email address</mat-error
+        >
+        <mat-error *ngIf="email.hasError('required')"
+          >Email is <strong>required</strong>
+        </mat-error>
+        <mat-error *ngIf="userState$.error && bSubmitted">
+          That email is already assigned to another user.
+        </mat-error>
+      </mat-form-field>
+    </section>
+
+    <section>
+      <mat-form-field appearance="fill">
+        <mat-label>Enter your password</mat-label>
+        <input
+          matInput
+          [type]="hide ? 'password' : 'text'"
+          [formControl]="password"
+          required
+        />
+        <button
+          mat-icon-button
+          matSuffix
+          (click)="hide = !hide"
+          [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide"
+        >
+          <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+        </button>
+        <mat-error *ngIf="password.hasError('required')"
+          >Password is required</mat-error
+        >
+        <mat-error *ngIf="password.hasError('minlength')"
+          >Password must be greater than 8 characters</mat-error
+        >
+      </mat-form-field>
+    </section>
+
+    <section>
+      <mat-form-field appearance="fill">
+        <mat-label>Repeat your password</mat-label>
+        <input
+          matInput
+          [type]="hide ? 'password' : 'text'"
+          [formControl]="password2"
+          required
+        />
+        <button
+          mat-icon-button
+          matSuffix
+          (click)="hide = !hide"
+          [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide"
+        >
+          <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+        </button>
+        <mat-error *ngIf="password2.hasError('required')"
+          >Repeat password is required</mat-error
+        >
+        <mat-error *ngIf="registerForm.errors?.equalValue">
+          Passwords must be equal
+        </mat-error>
+      </mat-form-field>
+    </section>
+
+    <section style="text-align: center">
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="!registerForm.valid"
+      >
+        JOIN NOW
+      </button>
+    </section>
+  </form>
 </div>

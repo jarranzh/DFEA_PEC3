@@ -19,6 +19,7 @@
 </div> -->
 
 <div class="container-uoc">
+  <h1>LOGIN</h1>
   <form [formGroup]="loginForm" (ngSubmit)="checkLogin()">
     <section>
       <mat-form-field appearance="fill">
@@ -69,7 +70,7 @@
         type="submit"
         [disabled]="!loginForm.valid"
       >
-        Login
+        SIGN IN
       </button>
     </section>
   </form>

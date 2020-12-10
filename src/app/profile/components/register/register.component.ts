@@ -20,6 +20,7 @@ import * as UserAction from '../../actions';
 })
 
 export class RegisterComponent implements OnInit {
+  hide = true;
 
   loginState$: LoginState;
   userState$: UserState;

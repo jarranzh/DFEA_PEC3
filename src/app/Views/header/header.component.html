@@ -1,23 +1,85 @@
-<nav class="navbar navbar-light" style="background-color: #e3f2fd;">
-    <!-- Navbar content -->
-    <!-- UOC LOGO -->
-    <a class="navbar-brand" href="#">
-        <img width="130" src="assets/img/uoc_masterbrand_3linies_positiu.png" alt="UOC logo">
-    </a>
-    <!-- APP NAME -->
-    <a class="navbar-brand">
-        APP DE ACTIVIDADES TURÍSTICAS
-    </a>
-    <!-- BUTTONS -->
-    <form class="form-inline my-2 my-lg-0">      
-        <button *ngIf="!loginState$.loggedIn" class="btn btn-outline-success my-2 my-sm-0" routerLink="/login">SIGN IN</button>
-        <button *ngIf="!loginState$.loggedIn" class="btn btn-outline-success my-2 my-sm-0" routerLink="/register">JOIN NOW</button>
+<mat-toolbar color="accent">
+  <a href="#">
+    <img
+      width="130"
+      src="assets/img/uoc_masterbrand_3linies_positiu.png"
+      alt="UOC logo"
+    />
+  </a>
+  <span>APP DE ACTIVIDADES TURÍSTICAS</span>
+  <div class="menu-options">
+    <button
+      mat-raised-button
+      *ngIf="!loginState$.loggedIn"
+      routerLink="/login"
+      color="primary"
+    >
+      SIGN IN
+    </button>
+    <button
+      mat-raised-button
+      *ngIf="!loginState$.loggedIn"
+      routerLink="/register"
+      color="primary"
+    >
+      JOIN NOW
+    </button>
+  </div>
+  <!-- <button
+    *ngIf="!loginState$.loggedIn"
+    class="btn btn-outline-success my-2 my-sm-0"
+    routerLink="/login"
+  >
+    SIGN IN
+  </button> -->
+  <!-- <button
+    *ngIf="!loginState$.loggedIn"
+    class="btn btn-outline-success my-2 my-sm-0"
+    routerLink="/register"
+  >
+    JOIN NOW
+  </button> -->
 
-        <button *ngIf="loginState$.loggedIn" class="btn btn-outline-success my-2 my-sm-0" (click)="onClickHome()">HOME</button>
-        <button *ngIf="userState$.user?.profile.type === 'Company'" class="btn btn-outline-success my-2 my-sm-0" routerLink="/activities-admin-list">ADMIN</button>
-        <button *ngIf="userState$.user?.profile.type === 'Tourist'" class="btn btn-outline-success my-2 my-sm-0" (click)="onClickFavorites()">FAVORITES</button>
-        <button *ngIf="userState$.user?.profile.type === 'Tourist'" class="btn btn-outline-success my-2 my-sm-0" (click)="onClickMyActivities()">MY ACTIVITIES</button>
-        <button *ngIf="loginState$.loggedIn" class="btn btn-outline-success my-2 my-sm-0" routerLink="/profile">PROFILE</button>
-        <button *ngIf="loginState$.loggedIn" class="btn btn-outline-success my-2 my-sm-0" (click)="onClickLogout()">LOGOUT</button>
-    </form>  
-</nav>
+  <button
+    *ngIf="loginState$.loggedIn"
+    class="btn btn-outline-success my-2 my-sm-0"
+    (click)="onClickHome()"
+  >
+    HOME
+  </button>
+  <button
+    *ngIf="userState$.user?.profile.type === 'Company'"
+    class="btn btn-outline-success my-2 my-sm-0"
+    routerLink="/activities-admin-list"
+  >
+    ADMIN
+  </button>
+  <button
+    *ngIf="userState$.user?.profile.type === 'Tourist'"
+    class="btn btn-outline-success my-2 my-sm-0"
+    (click)="onClickFavorites()"
+  >
+    FAVORITES
+  </button>
+  <button
+    *ngIf="userState$.user?.profile.type === 'Tourist'"
+    class="btn btn-outline-success my-2 my-sm-0"
+    (click)="onClickMyActivities()"
+  >
+    MY ACTIVITIES
+  </button>
+  <button
+    *ngIf="loginState$.loggedIn"
+    class="btn btn-outline-success my-2 my-sm-0"
+    routerLink="/profile"
+  >
+    PROFILE
+  </button>
+  <button
+    *ngIf="loginState$.loggedIn"
+    class="btn btn-outline-success my-2 my-sm-0"
+    (click)="onClickLogout()"
+  >
+    LOGOUT
+  </button>
+</mat-toolbar>

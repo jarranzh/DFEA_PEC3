@@ -1,0 +1,11 @@
+/* .mat-toolbar {
+  position: fixed;
+} */
+
+.menu-options {
+  margin-left: auto;
+}
+
+.menu-options .mat-button-base {
+  margin: 8px 8px 8px 0;
+}

@@ -6,6 +6,13 @@ import { ActivitiesAdminListComponent } from './components/activities-admin-list
 import { ActivityAdminDetailComponent } from './components/activity-admin-detail/activity-admin-detail.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -14,6 +21,18 @@ import { RouterModule } from '@angular/router';
     ActivitiesAdminListComponent,
     ActivityAdminDetailComponent
   ],
-  imports: [CommonModule, RouterModule, FormsModule, ReactiveFormsModule]
+  imports: [
+    CommonModule,
+    RouterModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatCardModule,
+    MatButtonModule,
+    FlexLayoutModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatGridListModule,
+    MatIconModule
+  ]
 })
 export class ActivitiesModule {}

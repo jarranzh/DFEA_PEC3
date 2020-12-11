@@ -1,81 +1,176 @@
 <!-- Si hay alguna actividad seleccionada -->
-<div *ngIf="activity">
-  <h5 class="float-left">Activities detail</h5>    
-  <br>
-  <hr style="border-top: 1px solid blue;"/>
-  <form class="text-center border border-light" [formGroup]="rForm">  
-    <div class="form-row mb-4">
-        <div class="col">
-            <!-- Name -->
-            <label class="float-left">Name:</label>
-            <input readonly type="text" formControlName="name" class="form-control mb-4">          
+<div class="activity__container" *ngIf="activity">
+  <h2>ACTIVITY DETAIL:</h2>
+  <mat-card class="mat-elevation-z4">
+    <mat-card-header>
+      <mat-card-title>{{ activity.name }}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form [formGroup]="rForm">
+        <!-- <mat-grid-list cols="2">
+          <mat-grid-tile> -->
+        <!-- Name -->
+        <div fxLayout="row wrap" fxLayoutGap="16px grid">
+          <div fxLayout="column" fxFlex="50%" fxFlex.xs="100%">
+            <!-- <div> -->
+            <mat-form-field appearance="fill">
+              <mat-label>Name:</mat-label>
+              <input matInput readonly type="text" formControlName="name" />
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Category:</mat-label>
+              <input matInput readonly type="text" formControlName="category" />
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Description:</mat-label>
+              <input
+                matInput
+                readonly
+                type="text"
+                formControlName="description"
+              />
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Subcategory:</mat-label>
+              <input
+                matInput
+                readonly
+                type="text"
+                formControlName="subcategory"
+              />
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Language:</mat-label>
+              <input matInput readonly type="text" formControlName="language" />
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Date:</mat-label>
+              <input matInput readonly type="text" formControlName="date" />
+            </mat-form-field>
+          </div>
+          <!-- </mat-grid-tile>
+
+          <mat-grid-tile> -->
+
+          <div fxLayout="column" fxFlex="50%" fxFlex.xs="100%">
+            <mat-form-field appearance="fill">
+              <mat-label>Price (€):</mat-label>
+              <input matInput readonly type="text" formControlName="price" />
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Minium capacity:</mat-label>
+              <input
+                matInput
+                readonly
+                type="text"
+                formControlName="miniumCapacity"
+              />
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Limit capacity:</mat-label>
+              <input
+                matInput
+                readonly
+                type="text"
+                formControlName="limitCapacity"
+              />
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>State:</mat-label>
+              <input matInput readonly type="text" formControlName="state" />
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>People registered:</mat-label>
+              <input
+                matInput
+                readonly
+                type="text"
+                formControlName="peopleRegistered"
+              />
+            </mat-form-field>
+          </div>
         </div>
-        <div class="col">
-          <label class="float-left">Category:</label>
-          <input readonly type="text" formControlName="category" class="form-control mb-4">
+        <!-- </div> -->
+
+        <!-- </mat-grid-tile>
+        </mat-grid-list> -->
+      </form>
+    </mat-card-content>
+    <mat-card-actions>
+      <!-- <div fxLayout="row"> -->
+      <button
+        mat-button
+        *ngIf="rForm.get('myActivitySignUpVisible').value"
+        (click)="onClickSignUP()"
+      >
+        SIGN UP
+      </button>
+      <!-- DELETE ACTIVITY BUTTON -->
+      <button
+        mat-button
+        color="warn"
+        *ngIf="rForm.get('myActivityDeleteVisible').value"
+        (click)="onClickDelete()"
+      >
+        DELETE
+      </button>
+      <button
+        mat-button
+        color="accent"
+        *ngIf="rForm.get('saveFavoritesVisible').value"
+        (click)="onClickSaveFavorites()"
+      >
+        <mat-icon>favorite</mat-icon> SAVE FAVORITES
+      </button>
+
+      <!-- DELETE FAVORITES BUTTON -->
+      <button
+        mat-button
+        color="warn"
+        *ngIf="rForm.get('deleteFavoritesVisible').value"
+        (click)="onClickDeleteFavorites()"
+      >
+        <mat-icon>favorite</mat-icon> DELETE FAVORITES
+      </button>
+      <!-- </div> -->
+    </mat-card-actions>
+
+    <!-- <div>
+        <div>
+          <button
+            *ngIf="rForm.get('myActivitySignUpVisible').value"
+            class="btn btn-primary my-4 float-center"
+            (click)="onClickSignUP()"
+          >
+            SIGN UP
+          </button>
+          <button
+            *ngIf="rForm.get('myActivityDeleteVisible').value"
+            class="btn btn-danger my-4 float-center"
+            (click)="onClickDelete()"
+          >
+            DELETE
+          </button>
         </div>
-    </div>  
-    <div class="form-row mb-4">
-      <div class="col">
-        <label class="float-left">Description:</label>          
-        <input readonly type="text" formControlName="description" class="form-control mb-4">
-      </div>
-      <div class="col">
-        <label class="float-left">Subcategory:</label>
-        <input readonly type="text" formControlName="subcategory" class="form-control mb-4">
-      </div>
-    </div>
-    <div class="form-row mb-4">
-      <div class="col">
-        <label class="float-left">Language:</label>          
-        <input readonly type="text" formControlName="language" class="form-control mb-4">
-      </div>
-      <div class="col">
-        <label class="float-left">Date:</label>
-        <input readonly type="text" formControlName="date" class="form-control mb-4">
-      </div>
-    </div>
-    <div class="form-row mb-4">
-      <div class="col">
-        <label class="float-left">Price:</label>          
-        <input readonly type="text" formControlName="price" class="form-control mb-4">
-      </div>
-      <div class="col">
-        <label class="float-left">Minium capacity:</label>
-        <input readonly type="text" formControlName="miniumCapacity" class="form-control mb-4">
-      </div>
-    </div>
-    <div class="form-row mb-4">
-      <div class="col">
-        <label class="float-left">Limit capacity:</label>          
-        <input readonly type="text" formControlName="limitCapacity" class="form-control mb-4">
-      </div>
-      <div class="col">
-        <label class="float-left">State:</label>
-        <input readonly type="text" formControlName="state" class="form-control mb-4">
-      </div>
-    </div>
-    <div class="form-row mb-4">    
-      <div class="col">
-        <label class="float-left">People registered:</label>          
-        <input readonly type="text" formControlName="peopleRegistered" class="form-control mb-4">
-      </div>
-      <div class="col">      
-      </div>
-    </div>
-    <div class="form-row mb-4">
-      <div class="col">
-        <!-- SIGN UP BUTTON -->
-        <button *ngIf="rForm.get('myActivitySignUpVisible').value" class="btn btn-primary my-4 float-center" (click)="onClickSignUP()">SIGN UP</button>
-        <!-- DELETE ACTIVITY BUTTON -->
-        <button *ngIf="rForm.get('myActivityDeleteVisible').value" class="btn btn-danger my-4 float-center" (click)="onClickDelete()">DELETE</button>
-      </div>
-      <div class="col">
-        <!-- SAVE FAVORITES BUTTON -->
-        <button *ngIf="rForm.get('saveFavoritesVisible').value" class="btn btn-danger my-4 float-center" (click)="onClickSaveFavorites()"><i class="fas fa-heart"></i> SAVE FAVORITES</button>
-        <!-- DELETE FAVORITES BUTTON -->
-        <button *ngIf="rForm.get('deleteFavoritesVisible').value" class="btn btn-danger my-4 float-center" (click)="onClickDeleteFavorites()"><i class="fas fa-heart"></i> DELETE FAVORITES</button>
-      </div>
-    </div>  
-  </form>
+        <div>
+          <button
+            *ngIf="rForm.get('saveFavoritesVisible').value"
+            class="btn btn-danger my-4 float-center"
+            (click)="onClickSaveFavorites()"
+          >
+            <i class="fas fa-heart"></i> SAVE FAVORITES
+          </button>
+          <button
+            *ngIf="rForm.get('deleteFavoritesVisible').value"
+            class="btn btn-danger my-4 float-center"
+            (click)="onClickDeleteFavorites()"
+          >
+            <i class="fas fa-heart"></i> DELETE FAVORITES
+          </button>
+        </div>
+      </div> -->
+  </mat-card>
 </div>

@@ -24,62 +24,56 @@
     >
       JOIN NOW
     </button>
-  </div>
-  <!-- <button
-    *ngIf="!loginState$.loggedIn"
-    class="btn btn-outline-success my-2 my-sm-0"
-    routerLink="/login"
-  >
-    SIGN IN
-  </button> -->
-  <!-- <button
-    *ngIf="!loginState$.loggedIn"
-    class="btn btn-outline-success my-2 my-sm-0"
-    routerLink="/register"
-  >
-    JOIN NOW
-  </button> -->
 
-  <button
-    *ngIf="loginState$.loggedIn"
-    class="btn btn-outline-success my-2 my-sm-0"
-    (click)="onClickHome()"
-  >
-    HOME
-  </button>
-  <button
-    *ngIf="userState$.user?.profile.type === 'Company'"
-    class="btn btn-outline-success my-2 my-sm-0"
-    routerLink="/activities-admin-list"
-  >
-    ADMIN
-  </button>
-  <button
-    *ngIf="userState$.user?.profile.type === 'Tourist'"
-    class="btn btn-outline-success my-2 my-sm-0"
-    (click)="onClickFavorites()"
-  >
-    FAVORITES
-  </button>
-  <button
-    *ngIf="userState$.user?.profile.type === 'Tourist'"
-    class="btn btn-outline-success my-2 my-sm-0"
-    (click)="onClickMyActivities()"
-  >
-    MY ACTIVITIES
-  </button>
-  <button
-    *ngIf="loginState$.loggedIn"
-    class="btn btn-outline-success my-2 my-sm-0"
-    routerLink="/profile"
-  >
-    PROFILE
-  </button>
-  <button
-    *ngIf="loginState$.loggedIn"
-    class="btn btn-outline-success my-2 my-sm-0"
-    (click)="onClickLogout()"
-  >
-    LOGOUT
-  </button>
+    <button
+      mat-raised-button
+      *ngIf="loginState$.loggedIn"
+      color="primary"
+      (click)="onClickHome()"
+    >
+      HOME
+    </button>
+
+    <button
+      mat-raised-button
+      *ngIf="userState$.user?.profile.type === 'Company'"
+      routerLink="/activities-admin-list"
+      color="primary"
+    >
+      ADMIN
+    </button>
+
+    <button
+      mat-raised-button
+      *ngIf="userState$.user?.profile.type === 'Tourist'"
+      color="primary"
+      (click)="onClickFavorites()"
+    >
+      FAVORITES
+    </button>
+    <button
+      mat-raised-button
+      *ngIf="userState$.user?.profile.type === 'Tourist'"
+      color="primary"
+      (click)="onClickMyActivities()"
+    >
+      MY ACTIVITIES
+    </button>
+    <button
+      mat-raised-button
+      *ngIf="loginState$.loggedIn"
+      color="primary"
+      routerLink="/profile"
+    >
+      PROFILE
+    </button>
+    <button
+      mat-raised-button
+      *ngIf="loginState$.loggedIn"
+      color="primary"
+      (click)="onClickLogout()"
+    >
+      LOGOUT
+    </button>
+  </div>
 </mat-toolbar>

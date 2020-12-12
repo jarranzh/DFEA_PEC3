@@ -1,6 +1,13 @@
 <div class="container">
   <h2>ACTIVITIES LIST</h2>
-  <div fxLayout="row wrap" fxLayoutGap="16px grid">
+  <div *ngIf="activitiesListState$.pending">
+    <mat-spinner color="accent"></mat-spinner>
+  </div>
+  <div
+    *ngIf="!activitiesListState$.pending"
+    fxLayout="row wrap"
+    fxLayoutGap="16px grid"
+  >
     <div
       fxFlex="25%"
       fxFlex.xs="100%"

@@ -9,7 +9,7 @@ export class Activity {
     language: activityLenguages;
     date: string;
     price: number;
-    miniumCapacity: number;
+    minimumCapacity: number;
     limitCapacity: number;
     state: activityStates;
     peopleRegistered: number;

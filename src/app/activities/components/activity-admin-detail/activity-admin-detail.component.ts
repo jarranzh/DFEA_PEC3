@@ -49,7 +49,7 @@ export class ActivityAdminDetailComponent implements OnInit {
     // En caso que se cree una nueva actividad
     if (this.activity === undefined)
     {
-      // Se incicializa la colección
+      // Se inicializa la colección
       this.activity = new Activity();
       this.activity.name  = '';
       this.activity.category = null;
@@ -58,7 +58,7 @@ export class ActivityAdminDetailComponent implements OnInit {
       this.activity.language = null;
       this.activity.date = '';
       this.activity.price = 0;
-      this.activity.miniumCapacity = 0;
+      this.activity.minimumCapacity = 0;
       this.activity.limitCapacity = 0;
       this.activity.peopleRegistered = 0;
       this.activity.state = activityStates.Places_available;
@@ -75,7 +75,7 @@ export class ActivityAdminDetailComponent implements OnInit {
       language: new FormControl(this.activity.language, [Validators.required]),
       date: new FormControl(this.activity.date, [CheckValidator.checkFormatDate]),
       price: new FormControl(this.activity.price, [Validators.required, CheckValidator.checkLessZero]),
-      miniumCapacity: new FormControl(this.activity.miniumCapacity, [Validators.required, CheckValidator.checkLessZero]),
+      minimumCapacity: new FormControl(this.activity.minimumCapacity, [Validators.required, CheckValidator.checkLessZero]),
       limitCapacity: new FormControl(this.activity.limitCapacity, [Validators.required, CheckValidator.checkLessZero]),
       state: new FormControl(this.activity.state, [Validators.required])
     });
@@ -109,7 +109,7 @@ export class ActivityAdminDetailComponent implements OnInit {
     this.activity.language = this.rForm.get('language').value;
     this.activity.date = this.rForm.get('date').value;
     this.activity.price = this.rForm.get('price').value;
-    this.activity.miniumCapacity = this.rForm.get('miniumCapacity').value;
+    this.activity.minimumCapacity = this.rForm.get('minimumCapacity').value;
     this.activity.limitCapacity = this.rForm.get('limitCapacity').value;
     // Se actualiza o se crea la actividad
     this.saveOrUpdate();

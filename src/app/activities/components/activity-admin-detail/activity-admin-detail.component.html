@@ -67,11 +67,11 @@
             </div>
             <div>
 
-                <label price="miniumCapacity">Minium Capacity:</label>
-                <input type="number" placeholder="Minium Capacity" name="miniumCapacity" formControlName="miniumCapacity" class="form-control mb-4">
-                <span style="color: red;" *ngIf="rForm.get('miniumCapacity').errors && (rForm.get('miniumCapacity').touched || rForm.get('miniumCapacity').dirty)">                
-                    <span *ngIf="rForm.get('miniumCapacity').errors.required">Minium Capacity is required</span>                     
-                    <span *ngIf="rForm.get('miniumCapacity').errors?.errorLessZero">Minium Capacity must be greater than zero</span>
+                <label price="minimumCapacity">Minium Capacity:</label>
+                <input type="number" placeholder="Minium Capacity" name="minimumCapacity" formControlName="minimumCapacity" class="form-control mb-4">
+                <span style="color: red;" *ngIf="rForm.get('minimumCapacity').errors && (rForm.get('minimumCapacity').touched || rForm.get('minimumCapacity').dirty)">                
+                    <span *ngIf="rForm.get('minimumCapacity').errors.required">Minium Capacity is required</span>                     
+                    <span *ngIf="rForm.get('minimumCapacity').errors?.errorLessZero">Minium Capacity must be greater than zero</span>
                 </span>
             </div>
             <div>
@@ -101,7 +101,7 @@
 </div> -->
 
 <div class="container-uoc">
-  <h1>REGISTER</h1>
+  <h1>ACTIVITY</h1>
   <form [formGroup]="rForm" (ngSubmit)="submit()">
     <section>
       <mat-form-field appearance="fill">
@@ -132,6 +132,131 @@
           >You must select a subcategory
         </mat-error>
       </mat-form-field>
+    </section>
+
+    <section>
+      <mat-form-field appearance="fill">
+        <mat-label>Name</mat-label>
+        <input matInput type="text" formControlName="name" required />
+
+        <mat-error *ngIf="rForm.get('name').errors?.required"
+          >Name is <strong>required</strong>
+        </mat-error>
+        <mat-error
+          *ngIf="
+            rForm.get('name').errors?.minlength ||
+            rForm.get('name').errors?.maxlength
+          "
+          >Name must be greater than 3 characters and less than 55
+        </mat-error>
+      </mat-form-field>
+    </section>
+
+    <section>
+      <mat-form-field appearance="fill">
+        <mat-label>Description</mat-label>
+        <input matInput type="text" formControlName="description" required />
+      </mat-form-field>
+    </section>
+
+    <section>
+      <mat-form-field appearance="fill">
+        <mat-label>Select a language...</mat-label>
+        <mat-select formControlName="language">
+          <mat-option
+            *ngFor="let language of eActivityLenguages | keyvalue"
+            [value]="language.value"
+            >{{ language.value }}</mat-option
+          >
+        </mat-select>
+        <mat-error *ngIf="rForm.get('language').errors?.required"
+          >You must select a language
+        </mat-error>
+      </mat-form-field>
+    </section>
+
+    <section>
+      <mat-form-field appearance="fill">
+        <mat-label>Date</mat-label>
+        <input
+          matInput
+          type="text"
+          formControlName="date"
+          placeholder="User date"
+        />
+        <mat-error *ngIf="rForm.get('date').errors?.errorFormatDate"
+          >Invalid format date
+        </mat-error>
+      </mat-form-field>
+    </section>
+
+    <section>
+      <mat-form-field appearance="fill">
+        <mat-label>Price</mat-label>
+        <input matInput type="text" formControlName="price" required />
+      </mat-form-field>
+      <mat-error *ngIf="rForm.get('price').errors?.required"
+        >Price is required
+      </mat-error>
+      <mat-error *ngIf="rForm.get('price').errors?.errorLessZero"
+        >Price must be greater than zero</mat-error
+      >
+    </section>
+
+    <section>
+      <mat-form-field appearance="fill">
+        <mat-label>Price</mat-label>
+        <input
+          matInput
+          type="text"
+          formControlName="minimumCapacity"
+          required
+        />
+      </mat-form-field>
+      <mat-error *ngIf="rForm.get('minimumCapacity').errors?.required"
+        >Minimum capacity is required
+      </mat-error>
+      <mat-error *ngIf="rForm.get('minimumCapacity').errors?.errorLessZero"
+        >Minimum capacity must be greater than zero</mat-error
+      >
+    </section>
+
+    <section>
+      <mat-form-field appearance="fill">
+        <mat-label>Price</mat-label>
+        <input matInput type="text" formControlName="limitCapacity" required />
+      </mat-form-field>
+      <mat-error *ngIf="rForm.get('limitCapacity').errors?.required"
+        >Limit capacity is required
+      </mat-error>
+      <mat-error *ngIf="rForm.get('limitCapacity').errors?.errorLessZero"
+        >Limit capacity must be greater than zero</mat-error
+      >
+    </section>
+    <section>
+      <mat-form-field appearance="fill">
+        <mat-label>Select a state...</mat-label>
+        <mat-select formControlName="category">
+          <mat-option
+            *ngFor="let state of eActivityStates | keyvalue"
+            [value]="state.value"
+            >{{ state.value }}</mat-option
+          >
+        </mat-select>
+        <mat-error *ngIf="rForm.get('state').errors?.required"
+          >You must select a state
+        </mat-error>
+      </mat-form-field>
+    </section>
+    <section>
+      <button
+        mat-raised-button
+        color="accent"
+        type="submit"
+        [disabled]="!rForm.valid"
+      >
+        SAVE
+      </button>
     </section>
   </form>
 </div>

@@ -48,7 +48,7 @@ export class ActivityDetailComponent implements OnInit {
       language: new FormControl(this.activity?.language),
       date: new FormControl(this.activity?.date),
       price: new FormControl(this.activity?.price),
-      miniumCapacity: new FormControl(this.activity?.miniumCapacity),
+      minimumCapacity: new FormControl(this.activity?.minimumCapacity),
       limitCapacity: new FormControl(this.activity?.limitCapacity),
       peopleRegistered: new FormControl(this.activity?.peopleRegistered),
       state: new FormControl(this.activity?.state),

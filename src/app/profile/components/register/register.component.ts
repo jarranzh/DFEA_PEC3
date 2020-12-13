@@ -78,7 +78,7 @@ export class RegisterComponent implements OnInit {
     }, { validator: CheckValidator.equalValue('password', 'password2') });
   }
 
-  public userRegister()
+  public userRegister(): void
   {
     this.bSubmitted = true;
     // Se inicializa la clase User

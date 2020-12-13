@@ -2,10 +2,10 @@
   position: fixed;
 } */
 
-.menu-options {
-  margin-left: auto;
+.mat-button-base {
+  margin: 8px 8px 8px 0;
 }
 
-.menu-options .mat-button-base {
-  margin: 8px 8px 8px 0;
+.header__title {
+  font-size: 14px;
 }

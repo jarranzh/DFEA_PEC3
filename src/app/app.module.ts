@@ -25,6 +25,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatMenuModule } from '@angular/material/menu';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, FooterComponent],
@@ -58,7 +61,10 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatInputModule,
     MatButtonModule,
     MatIconModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatMenuModule,
+    FlexLayoutModule,
+    MatSidenavModule
   ],
   providers: [],
   bootstrap: [AppComponent]

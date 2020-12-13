@@ -1,4 +1,4 @@
-<mat-toolbar color="accent">
+<!-- <mat-toolbar color="accent">
   <a href="#">
     <img
       width="130"
@@ -6,8 +6,70 @@
       alt="UOC logo"
     />
   </a>
+  <button
+    fxShow="true"
+    fxHide.gt-sm="true"
+    mat-icon-button
+    [matMenuTriggerFor]="menu"
+    aria-label="Example icon-button with menu icon"
+  >
+    <mat-icon>menu</mat-icon>
+  </button>
+  <div fxFlexFill>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item *ngIf="!loginState$.loggedIn" routerLink="/login">
+        <span>Sign in</span>
+      </button>
+      <button
+        mat-menu-item
+        *ngIf="!loginState$.loggedIn"
+        routerLink="/register"
+      >
+        <span>Join now</span>
+      </button>
+      <button
+        mat-menu-item
+        *ngIf="loginState$.loggedIn"
+        (click)="onClickHome()"
+      >
+        <span>Home</span>
+      </button>
+      <button
+        mat-menu-item
+        *ngIf="userState$.user?.profile.type === 'Company'"
+        routerLink="/activities-admin-list"
+      >
+        <span>Admin</span>
+      </button>
+      <button
+        mat-menu-item
+        *ngIf="userState$.user?.profile.type === 'Tourist'"
+        (click)="onClickFavorites()"
+      >
+        <span>Favorites</span>
+      </button>
+      <button
+        mat-menu-item
+        *ngIf="userState$.user?.profile.type === 'Tourist'"
+        (click)="onClickMyActivities()"
+      >
+        <span>My activities</span>
+      </button>
+      <button mat-menu-item *ngIf="loginState$.loggedIn" routerLink="/profile">
+        <span>Profile</span>
+      </button>
+      <button
+        mat-menu-item
+        *ngIf="loginState$.loggedIn"
+        (click)="onClickLogout()"
+      >
+        <span>Logout</span>
+      </button>
+    </mat-menu>
+  </div>
+
   <span>APP DE ACTIVIDADES TURÍSTICAS</span>
-  <div class="menu-options">
+  <div fxShow="true" fxHide.lt-md="true" class="menu-options">
     <button
       mat-raised-button
       *ngIf="!loginState$.loggedIn"
@@ -76,4 +138,140 @@
       LOGOUT
     </button>
   </div>
+</mat-toolbar> -->
+<mat-toolbar
+  color="accent"
+  fxLayout="row"
+  fxLayoutAlign="space-between center"
+  fxLayout
+>
+  <span fxShow="true" fxHide.lt-md="true">APP DE ACTIVIDADES TURÍSTICAS</span>
+  <span fxShow="true" fxHide.gt-sm="true" class="header__title"
+    >ACTIVIDADES TURÍSTICAS</span
+  >
+
+  <div fxShow="true" fxHide.lt-md="true">
+    <!-- The following menu items will be hidden on both SM and XS screen sizes -->
+
+    <button
+      mat-raised-button
+      *ngIf="!loginState$.loggedIn"
+      routerLink="/login"
+      color="primary"
+    >
+      SIGN IN
+    </button>
+    <button
+      mat-raised-button
+      *ngIf="!loginState$.loggedIn"
+      routerLink="/register"
+      color="primary"
+    >
+      JOIN NOW
+    </button>
+
+    <button
+      mat-raised-button
+      *ngIf="loginState$.loggedIn"
+      color="primary"
+      (click)="onClickHome()"
+    >
+      HOME
+    </button>
+
+    <button
+      mat-raised-button
+      *ngIf="userState$.user?.profile.type === 'Company'"
+      routerLink="/activities-admin-list"
+      color="primary"
+    >
+      ADMIN
+    </button>
+
+    <button
+      mat-raised-button
+      *ngIf="userState$.user?.profile.type === 'Tourist'"
+      color="primary"
+      (click)="onClickFavorites()"
+    >
+      FAVORITES
+    </button>
+    <button
+      mat-raised-button
+      *ngIf="userState$.user?.profile.type === 'Tourist'"
+      color="primary"
+      (click)="onClickMyActivities()"
+    >
+      MY ACTIVITIES
+    </button>
+    <button
+      mat-raised-button
+      *ngIf="loginState$.loggedIn"
+      color="primary"
+      routerLink="/profile"
+    >
+      PROFILE
+    </button>
+    <button
+      mat-raised-button
+      *ngIf="loginState$.loggedIn"
+      color="primary"
+      (click)="onClickLogout()"
+    >
+      LOGOUT
+    </button>
+  </div>
+
+  <div fxShow="true" fxHide.gt-sm="true">
+    <button
+      mat-icon-button
+      aria-label="Example icon-button with menu icon"
+      [matMenuTriggerFor]="menu"
+    >
+      <mat-icon>menu</mat-icon>
+    </button>
+  </div>
+
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item *ngIf="!loginState$.loggedIn" routerLink="/login">
+      <span>Sign in</span>
+    </button>
+    <button mat-menu-item *ngIf="!loginState$.loggedIn" routerLink="/register">
+      <span>Join now</span>
+    </button>
+    <button mat-menu-item *ngIf="loginState$.loggedIn" (click)="onClickHome()">
+      <span>Home</span>
+    </button>
+    <button
+      mat-menu-item
+      *ngIf="userState$.user?.profile.type === 'Company'"
+      routerLink="/activities-admin-list"
+    >
+      <span>Admin</span>
+    </button>
+    <button
+      mat-menu-item
+      *ngIf="userState$.user?.profile.type === 'Tourist'"
+      (click)="onClickFavorites()"
+    >
+      <span>Favorites</span>
+    </button>
+    <button
+      mat-menu-item
+      *ngIf="userState$.user?.profile.type === 'Tourist'"
+      (click)="onClickMyActivities()"
+    >
+      <span>My activities</span>
+    </button>
+    <button mat-menu-item *ngIf="loginState$.loggedIn" routerLink="/profile">
+      <span>Profile</span>
+    </button>
+    <button
+      mat-menu-item
+      *ngIf="loginState$.loggedIn"
+      (click)="onClickLogout()"
+    >
+      <span>Logout</span>
+    </button>
+  </mat-menu>
 </mat-toolbar>

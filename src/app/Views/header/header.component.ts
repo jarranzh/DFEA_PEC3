@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, EventEmitter, Output } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import { AppState } from 'src/app/app.reducers';
 import { Store } from '@ngrx/store';
@@ -13,7 +13,7 @@ import { UserState } from '../../profile/reducers';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-
+  @Output() menu = new EventEmitter();
   loginState$: LoginState;
   userState$: UserState;
 
@@ -50,4 +50,8 @@ export class HeaderComponent implements OnInit {
   onClickHome(): void {
     this.router.navigate(['/activity-list']);
   }
+//Open menu
+  // open(event) {
+  //   console.log("CLICK");
+  // }
 }

@@ -1,8 +1,8 @@
-<div class="container">
+<!-- <div class="container">
     <form class="text-center border border-light p-5" [formGroup]="rForm" (submit)="submit()"> 
         <div class="form-group">
             <div>
-                <!-- Level -->
+
                 <label for="type">Type:</label>
                 <select (change)="onChangeTypeValue()" formControlName="type" class="form-control mb-4" placeholder="Type">
                     <option [ngValue]="null">Select type...</option>                
@@ -13,7 +13,7 @@
                 </span>
             </div>
             <div>
-                <!-- Level -->
+
                 <label for="level">Level:</label>
                 <select formControlName="level" name="level" class="form-control mb-4" placeholder="Level">
                     <option [ngValue]="null">Select level...</option>                
@@ -24,7 +24,7 @@
                 </span>
             </div>
             <div>
-                <!-- Name -->
+
                 <label for="name">Name:</label>
                 <input type="text" placeholder="Name" name="name" formControlName="name" class="form-control mb-4">
                 <span style="color: red;" *ngIf="rForm.get('name').errors && (rForm.get('name').touched || rForm.get('name').dirty)">                
@@ -33,7 +33,7 @@
                 </span>
             </div>
             <div>
-                <!-- University -->
+
                 <label for="university">University:</label>
                 <input type="text" placeholder="University" name="university" formControlName="university" class="form-control mb-4">
                 <span style="color: red;" *ngIf="rForm.get('university').errors && (rForm.get('university').touched || rForm.get('university').dirty)">                
@@ -42,7 +42,7 @@
                 </span>
             </div>
             <div>
-                <!-- Finish date -->
+
                 <label for="date">Finish date:</label>
                 <input type="text" placeholder="dd/MM/yyyy" name="date" formControlName="date" class="form-control mb-4">
                 <span style="color: red;" *ngIf="rForm.get('date').errors && (rForm.get('date').touched || rForm.get('date').dirty)">                
@@ -53,4 +53,97 @@
         </div>
 
     </form>
+</div> -->
+<div class="container-uoc">
+  <h2>PROFILE</h2>
+  <form [formGroup]="rForm" (submit)="submit()">
+    <section>
+      <mat-form-field appearance="fill">
+        <mat-label>Select type</mat-label>
+        <mat-select (change)="onChangeTypeValue()" formControlName="type">
+          <mat-option
+            *ngFor="let type of eEducationTypes | keyvalue"
+            [value]="type.value"
+            >{{ type.value }}</mat-option
+          >
+        </mat-select>
+        <mat-error *ngIf="rForm.get('type').errors?.required"
+          >You must select a type
+        </mat-error>
+      </mat-form-field>
+    </section>
+    <section>
+      <mat-form-field appearance="fill">
+        <mat-label>Select level</mat-label>
+        <mat-select formControlName="level">
+          <mat-option
+            *ngFor="let level of eLevelTypes | keyvalue"
+            [value]="level.value"
+            >{{ level.value }}</mat-option
+          >
+        </mat-select>
+        <mat-error *ngIf="rForm.get('level').errors?.required"
+          >You must select a level
+        </mat-error>
+      </mat-form-field>
+    </section>
+    <section>
+      <mat-form-field appearance="fill">
+        <mat-label>Name</mat-label>
+        <input matInput type="text" formControlName="name" required />
+
+        <mat-error *ngIf="rForm.get('name').errors?.required"
+          >Name is <strong>required</strong>
+        </mat-error>
+        <mat-error
+          *ngIf="
+            rForm.get('name').errors?.minlength ||
+            rForm.get('name').errors?.maxlength
+          "
+          >Name must be greater than 3 characters and less than 55
+        </mat-error>
+      </mat-form-field>
+    </section>
+    <section>
+      <mat-form-field appearance="fill">
+        <mat-label>University</mat-label>
+        <input matInput type="text" formControlName="university" required />
+
+        <mat-error *ngIf="rForm.get('university').errors?.required"
+          >University is <strong>required</strong>
+        </mat-error>
+        <mat-error
+          *ngIf="
+            rForm.get('university').errors?.minlength ||
+            rForm.get('university').errors?.maxlength
+          "
+          >University must be greater than 3 characters and less than 55
+        </mat-error>
+      </mat-form-field>
+    </section>
+    <section>
+      <mat-form-field appearance="fill">
+        <mat-label>Finish Date</mat-label>
+        <input
+          matInput
+          type="text"
+          formControlName="date"
+          placeholder="User date"
+        />
+        <mat-error *ngIf="rForm.get('date').errors?.errorFormatDate"
+          >Invalid format date
+        </mat-error>
+      </mat-form-field>
+    </section>
+    <section>
+      <button
+        mat-raised-button
+        color="accent"
+        type="submit"
+        [disabled]="!rForm.valid"
+      >
+        SAVE
+      </button>
+    </section>
+  </form>
 </div>

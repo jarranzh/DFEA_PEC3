@@ -1,8 +1,8 @@
-<div class="container">
+<!-- <div class="container">
     <form class="text-center border border-light p-5" [formGroup]="rForm" (submit)="submit()"> 
         <div class="form-group">
             <div>
-                <!-- Category -->
+
                 <label for="type">Category:</label>
                 <select (change)="onChangeCategoryValue()" formControlName="category" class="form-control mb-4" placeholder="Category">
                     <option [ngValue]="null">Select category...</option>                
@@ -13,7 +13,7 @@
                 </span>
             </div>
             <div>
-                <!-- Subcategory -->
+
                 <label for="type">Subcategory:</label>
                 <select formControlName="subcategory" class="form-control mb-4" placeholder="Subcategory">
                     <option [ngValue]="null">Select subcategory...</option>                
@@ -24,7 +24,7 @@
                 </span>
             </div>
             <div>
-                <!-- Name -->
+
                 <label for="name">Name:</label>
                 <input type="text" placeholder="Name" name="name" formControlName="name" class="form-control mb-4">
                 <span style="color: red;" *ngIf="rForm.get('name').errors && (rForm.get('name').touched || rForm.get('name').dirty)">                
@@ -33,12 +33,12 @@
                 </span>
             </div>
             <div>
-                <!-- Description -->
+
                 <label for="university">Description:</label>
                 <input type="text" placeholder="Description" name="description" formControlName="description" class="form-control mb-4">                
             </div>            
             <div>
-                <!-- Language -->
+
                 <label for="language">Language:</label>
                 <select formControlName="language" class="form-control mb-4" placeholder="Language">
                     <option [ngValue]="null">Select language...</option>                
@@ -49,7 +49,7 @@
                 </span>
             </div>
             <div>
-                <!-- Date -->
+
                 <label for="date">Date:</label>
                 <input type="text" placeholder="dd/MM/yyyy" name="date" formControlName="date" class="form-control mb-4">
                 <span style="color: red;" *ngIf="rForm.get('date').errors && (rForm.get('date').touched || rForm.get('date').dirty)">                
@@ -57,7 +57,7 @@
                 </span>
             </div>
             <div>
-                <!-- Price -->
+
                 <label price="name">Price:</label>
                 <input type="number" placeholder="Price" name="price" formControlName="price" class="form-control mb-4">
                 <span style="color: red;" *ngIf="rForm.get('price').errors && (rForm.get('price').touched || rForm.get('price').dirty)">                
@@ -66,7 +66,7 @@
                 </span>
             </div>
             <div>
-                <!-- Minium Capacity -->
+
                 <label price="miniumCapacity">Minium Capacity:</label>
                 <input type="number" placeholder="Minium Capacity" name="miniumCapacity" formControlName="miniumCapacity" class="form-control mb-4">
                 <span style="color: red;" *ngIf="rForm.get('miniumCapacity').errors && (rForm.get('miniumCapacity').touched || rForm.get('miniumCapacity').dirty)">                
@@ -75,7 +75,7 @@
                 </span>
             </div>
             <div>
-                <!-- limit Capacity -->
+
                 <label price="limitCapacity">Limit Capacity:</label>
                 <input type="number" placeholder="Limit Capacity" name="limitCapacity" formControlName="limitCapacity" class="form-control mb-4">
                 <span style="color: red;" *ngIf="rForm.get('limitCapacity').errors && (rForm.get('limitCapacity').touched || rForm.get('limitCapacity').dirty)">                
@@ -84,7 +84,7 @@
                 </span>
             </div>
             <div>
-                <!-- State -->
+
                 <label for="state">State:</label>
                 <select formControlName="state" class="form-control mb-4" placeholder="State">
                     <option [ngValue]="null">Select state...</option>                
@@ -98,4 +98,40 @@
         </div>
 
     </form>
+</div> -->
+
+<div class="container-uoc">
+  <h1>REGISTER</h1>
+  <form [formGroup]="rForm" (ngSubmit)="submit()">
+    <section>
+      <mat-form-field appearance="fill">
+        <mat-label>Select a category...</mat-label>
+        <mat-select formControlName="category">
+          <mat-option
+            *ngFor="let category of eActivityCategories | keyvalue"
+            [value]="category.value"
+            >{{ category.value }}</mat-option
+          >
+        </mat-select>
+        <mat-error *ngIf="rForm.get('category').errors?.required"
+          >You must select a category
+        </mat-error>
+      </mat-form-field>
+    </section>
+    <section>
+      <mat-form-field appearance="fill">
+        <mat-label>Select a subcategory...</mat-label>
+        <mat-select formControlName="subcategory">
+          <mat-option
+            *ngFor="let subcategory of eSubcategory | keyvalue"
+            [value]="subcategory.value"
+            >{{ subcategory.value }}</mat-option
+          >
+        </mat-select>
+        <mat-error *ngIf="rForm.get('subcategory').errors?.required"
+          >You must select a subcategory
+        </mat-error>
+      </mat-form-field>
+    </section>
+  </form>
 </div>

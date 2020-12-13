@@ -1,8 +1,8 @@
-<div class="container">
+<!-- <div class="container">
     <form class="text-center border border-light p-5" [formGroup]="rForm" (submit)="submit()"> 
         <div class="form-group">
             <div>
-                <!-- Level -->
+
                 <label for="level">Level:</label>
                 <select formControlName="level" class="form-control mb-4" placeholder="Level">
                     <option [ngValue]="null">Select level...</option>                
@@ -13,7 +13,7 @@
                 </span>
             </div>
             <div>
-                <!-- Language -->
+
                 <label for="language">Language:</label>
                 <select formControlName="language" class="form-control mb-4" placeholder="Level">
                     <option [ngValue]="null">Select language...</option>                
@@ -24,7 +24,7 @@
                 </span>
             </div>
             <div>
-                <!-- Date -->
+
                 <label for="date">Title date:</label>
                 <input type="text" placeholder="dd/MM/yyyy" name="date" formControlName="date" class="form-control mb-4">
                 <span style="color: red;" *ngIf="rForm.get('date').errors && (rForm.get('date').touched || rForm.get('date').dirty)">                
@@ -35,4 +35,60 @@
         </div>
 
     </form>
+</div> -->
+
+<div class="container-uoc">
+  <h1>LANGUAGE</h1>
+  <form [formGroup]="rForm" (submit)="submit()">
+    <section>
+      <mat-form-field appearance="fill">
+        <mat-label>Select level...</mat-label>
+        <mat-select formControlName="level">
+          <mat-option
+            *ngFor="let level of eLanguageLevels | keyvalue"
+            [value]="level.value"
+            >{{ level.value }}</mat-option
+          >
+        </mat-select>
+        <mat-error *ngIf="rForm.get('level').errors?.required"
+          >You must select a level
+        </mat-error>
+      </mat-form-field>
+    </section>
+    <section>
+      <mat-form-field appearance="fill">
+        <mat-label>Select language...</mat-label>
+        <mat-select formControlName="level">
+          <mat-option
+            *ngFor="let language of eActivityLenguages | keyvalue"
+            [value]="language.value"
+            >{{ language.value }}</mat-option
+          >
+        </mat-select>
+        <mat-error *ngIf="rForm.get('language').errors?.required"
+          >You must select a language
+        </mat-error>
+      </mat-form-field>
+    </section>
+    <section>
+      <mat-form-field appearance="fill">
+        <mat-label>Finish Date</mat-label>
+        <input matInput type="text" name="date" formControlName="date" />
+        <mat-error *ngIf="rForm.get('date').errors?.errorFormatDate"
+          >Invalid format date
+        </mat-error>
+      </mat-form-field>
+    </section>
+
+    <section>
+      <button
+        mat-raised-button
+        color="accent"
+        type="submit"
+        [disabled]="!rForm.valid"
+      >
+        SAVE
+      </button>
+    </section>
+  </form>
 </div>

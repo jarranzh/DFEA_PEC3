@@ -128,12 +128,7 @@
     <section>
       <mat-form-field appearance="fill">
         <mat-label>Finish Date</mat-label>
-        <input
-          matInput
-          type="text"
-          formControlName="date"
-          placeholder="User date"
-        />
+        <input matInput type="text" formControlName="date" />
         <mat-error *ngIf="rForm.get('date').errors?.errorFormatDate"
           >Invalid format date
         </mat-error>

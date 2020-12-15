@@ -133,10 +133,10 @@
         <mat-error *ngIf="password2.hasError('required')"
           >Repeat password is required</mat-error
         >
-        <mat-error *ngIf="registerForm.errors?.equalValue">
-          Passwords must be equal
-        </mat-error>
       </mat-form-field>
+      <div class="error" *ngIf="registerForm.errors?.equalValue">
+        Passwords must be equal
+      </div>
     </section>
 
     <section>

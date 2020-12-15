@@ -189,6 +189,55 @@ export class InMemoryDataService implements InMemoryDbService {
         peopleRegistered: 0,
         idUser: 3,
         signUpUsers: []
+      },
+      {
+        id: 4,
+        name: 'Museo Dalí',
+        category: activityCategories.Culture_Heritage,
+        subcategory: CultureHeritageCategoryOptions.museoMonumento,
+        description: 'Visita museo Dalí',
+        language: activityLenguages.ES,
+        date: '20/01/2021',
+        price: 15.5,
+        minimumCapacity: 10,
+        limitCapacity: 30,
+        state: activityStates.Places_available,
+        peopleRegistered: 1,
+        idUser: 1,
+        signUpUsers: [2]
+      },
+      // tslint:disable-next-line: max-line-length
+      {
+        id: 5,
+        name: 'Museo Gaudí',
+        category: activityCategories.Culture_Heritage,
+        subcategory: CultureHeritageCategoryOptions.museoMonumento,
+        description: 'Visita museo Gaudí',
+        language: activityLenguages.ES,
+        date: '20/12/2020',
+        price: 35,
+        minimumCapacity: 10,
+        limitCapacity: 30,
+        state: activityStates.Places_available,
+        peopleRegistered: 1,
+        idUser: 1,
+        signUpUsers: []
+      },
+      {
+        id: 6,
+        name: 'Museo renacentista',
+        category: activityCategories.Culture_Heritage,
+        subcategory: CultureHeritageCategoryOptions.museoMonumento,
+        description: 'Visita museo renacentista',
+        language: activityLenguages.FR,
+        date: '15/02/2021',
+        price: 30,
+        minimumCapacity: 10,
+        limitCapacity: 30,
+        state: activityStates.Places_available,
+        peopleRegistered: 0,
+        idUser: 3,
+        signUpUsers: []
       }
     ];
 
